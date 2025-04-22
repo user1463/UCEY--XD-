@@ -10,6 +10,12 @@
 </p>
 
 ---
+## ✨ Get Session ID
+
+To use **UCEY XD**, you need a WhatsApp session.
+
+👉 [Click here to generate yours](https://dark-pair-code.onrender.com/)
+
 
 ## 🚀 Deploy to Heroku
 
