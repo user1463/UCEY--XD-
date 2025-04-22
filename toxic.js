@@ -233,7 +233,7 @@ if (conf.AUTO_LIKE_STATUS === "yes") {
             
             var dev = [dj, dj2,dj3,luffy].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
-            console.log("\t𝐃𝐀𝐑𝐊-𝐌𝐃 𝐎𝐍𝐋𝐈𝐍𝐄⚡");
+            console.log("\t𝐔𝐂𝐄𝐘 𝐗𝐃 𝐎𝐍𝐋𝐈𝐍𝐄⚡");
             console.log("=========== written message===========");
             if (verifGroupe) {
                 console.log("message from the group🗨️ : " + nomGroupe);
@@ -919,13 +919,13 @@ zk.ev.on('group-participants.update', async (group) => {
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("dark MD is Online ✅\n\n");
+                console.log("Ucey xd is Online ✅\n\n");
                 //chargement des clintplugins 
-                console.log("Loading dark Commands ...\n");
+                console.log("Loading ucey Commands ...\n");
                 fs.readdirSync(__dirname + "/clintplugins").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
                         try {
-                            require(__dirname + "/dplugins/" + fichier);
+                            require(__dirname + "/uceyplugins/" + fichier);
                             console.log(fichier + " Installed Successfully✔️");
                         }
                         catch (e) {
