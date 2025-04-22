@@ -955,9 +955,9 @@ zk.ev.on('group-participants.update', async (group) => {
                 let cmsg =`      BOT RUNNING
                 ⁠              
 > 𝑫𝑬𝑽   :
-𝗙𝗔𝗥𝗞 𝗧𝗘𝗖𝗛
+ 𝚄𝙲𝙴𝚈 𝚃𝙴𝙲𝙷
 > 𝑩𝑶𝑻   : 
-𝗗𝗔𝗥𝗞-𝗠𝗗
+𝚄𝙲𝙴𝚈-𝚇𝙳 𝙱𝙾𝚃
 ⁠⁠`;
                 await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
