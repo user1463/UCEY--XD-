@@ -1,140 +1,82 @@
-const util = require("util");
-const fs = require("fs-extra");
+const util = require('util');
+const fs = require('fs-extra');
 const os = require("os");
 const moment = require("moment-timezone");
 const { zokou } = require(__dirname + "/../framework/zokou");
 const { format } = require(__dirname + "/../framework/mesfonctions");
 const s = require(__dirname + "/../set");
 
-zokou(
-  {
-    nomCom: "menu",
-    categorie: "General",
-    reaction: "⚡",
-  },
-  async (dest, zk, commandeOptions) => {
-    const { ms, repondre, prefixe, nomAuteurMessage, mybotpic } = commandeOptions;
-    const { cm } = require(__dirname + "/../framework/zokou");
+const more = String.fromCharCode(8206);
+const readmore = more.repeat(4001);
 
-    let loadingMsg = await zk.sendMessage(
-      dest,
-      { text: "𝐋𝐨𝐚𝐝𝐢𝐧𝐠....\n▰▱▱▱▱▱▱▱▱▱ 10%" },
-      { quoted: ms }
-    );
-
-    const updateProgress = async (percent) => {
-      const bar = "▰".repeat(percent / 10) + "▱".repeat(10 - percent / 10);
-      await zk.sendMessage(
-        dest,
-        { text: `𝐋𝐨𝐚𝐝𝐢𝐧𝐠...\n${bar} ${percent}%`, edit: loadingMsg.key },
-        { quoted: ms }
-      );
-    };
-
-    for (let percent of [10, 30, 50, 70, 100]) {
-      await new Promise((r) => setTimeout(r, 300));
-      await updateProgress(percent);
-    }
-
-    moment.tz.setDefault("Africa/Nairobi");
-    const time = moment().format("HH:mm:ss");
-    const mode = s.MODE.toLowerCase() === "yes" ? "private" : "public";
+zokou({ nomCom: "menu", categorie: "General" }, async (dest, zk, commandeOptions) => {
+    let { ms, repondre, prefixe, nomAuteurMessage, mybotpic } = commandeOptions;
+    let { cm } = require(__dirname + "/../framework/zokou");
 
     let coms = {};
-    cm.map((c) => {
-      if (!coms[c.categorie]) coms[c.categorie] = [];
-      coms[c.categorie].push(c.nomCom);
+    let mode = (s.MODE.toLowerCase() === "yes") ? "public" : "private";
+
+    cm.map(async (com) => {
+        if (!coms[com.categorie]) coms[com.categorie] = [];
+        coms[com.categorie].push(com.nomCom);
     });
 
-    const info = `
-╭─────[ *DARK-MD V²* ]─────╮
-│ *Owner:* @254107065646
-│ *Mode:* ${mode}
-│ *Time:* ${time} (EAT)
-│ *RAM:* ${format(os.totalmem() - os.freemem())}/${format(os.totalmem())}
-╰──────────────────────────╯`;
+    moment.tz.setDefault('EAT');
+    const timeNow = moment().format('HH:mm:ss');
+    const dateNow = moment().format('DD/MM/YYYY');
 
-    let menuText = `
-╭──────[ ⚡ 𝐌𝐄𝐍𝐔 ⚡ ]──────╮
-│ Use ${prefixe}help <cmd>
-│ for command info
-│
-`;
+    const infoMsg = `
+╭━━━☢︎︎ *『 UCEY XD 』* ☢︎︎━━━❍
+┃❍╭──────────────߷
+┃❍│▸ *Date*       : ${dateNow}
+┃❍│▸ *Time*       : ${timeNow}
+┃❍│▸ *Prefix*     : [ ${s.PREFIXE} ]
+┃❍│▸ *Mode*       : ${mode}
+┃❍│▸ *Plugins*    : ${cm.length}
+┃❍│▸ *Platform*   : ${os.platform()}
+┃❍│▸ *Owner*      : ${s.OWNER_NAME}
+┃❍│▸ *Developer*  : Ucey Tech
+┃❍│▸ *Timezone*   : ${s.TZ}
+┃❍╰───────────────߷
+╰━━━⟣ Created by Ucey Tech ⟢━━━
+${readmore}`;
 
-    const styles = {
-      General: "🌟", Group: "👥", Fun: "🎭",
-      Mods: "🛡️", Search: "🔍", Logo: "🎨",
-      Utilities: "🛠", AI: "🤖",
-    };
+    let menuMsg = `\n*╭─◇ UCEY XD COMMANDS ◇─╮*`;
 
     for (const cat in coms) {
-      const icon = styles[cat] || "✨";
-      menuText += `│ ${icon} *${cat.toUpperCase()}*\n`;
-      coms[cat].forEach(cmd => {
-        menuText += `│   • ${cmd}\n`;
-      });
+        menuMsg += `\n\n*⟫ ${cat.toUpperCase()}*\n`;
+        for (const cmd of coms[cat]) {
+            menuMsg += `*┊⭔* ${prefixe}${cmd}\n`;
+        }
     }
 
-    menuText += `╰────────────────────────╯`;
+    menuMsg += `\n*╰─◇ Powered by Ucey Tech ◇─╯*`;
 
-    const imageOrVideo = mybotpic(); // Get bot banner media
-    const mentions = ["254107065646@s.whatsapp.net"];
+    let media = mybotpic();
 
-    await zk.sendMessage(
-      dest,
-      { text: "𝐌𝐄𝐍𝐔 𝐑𝐄𝐀𝐃𝐘 ✅\n▰▰▰▰▰▰▰▰▰▰ 100%", edit: loadingMsg.key },
-      { quoted: ms }
-    );
+    try {
+        if (media.match(/\.(mp4|gif)$/i)) {
+            await zk.sendMessage(dest, {
+                video: { url: media },
+                caption: infoMsg + menuMsg,
+                footer: "*UCEY XD - Stylish WhatsApp Bot*",
+                gifPlayback: true
+            }, { quoted: ms });
 
-    await new Promise((r) => setTimeout(r, 500));
+        } else if (media.match(/\.(jpeg|png|jpg)$/i)) {
+            await zk.sendMessage(dest, {
+                image: { url: media },
+                caption: infoMsg + menuMsg,
+                footer: "*UCEY XD by Ucey Tech*"
+            }, { quoted: ms });
 
-    if (imageOrVideo.match(/\.(mp4|gif)$/i)) {
-      await zk.sendMessage(
-        dest,
-        {
-          video: { url: imageOrVideo },
-          caption: info + "\n" + menuText,
-          gifPlayback: true,
-          mentions,
-        },
-        { quoted: ms }
-      );
-    } else if (imageOrVideo.match(/\.(jpg|jpeg|png)$/i)) {
-      await zk.sendMessage(
-        dest,
-        {
-          image: { url: imageOrVideo },
-          caption: info + "\n" + menuText,
-          mentions,
-        },
-        { quoted: ms }
-      );
-    } else {
-      await zk.sendMessage(
-        dest,
-        { text: info + "\n" + menuText, mentions },
-        { quoted: ms }
-      );
+        } else {
+            repondre(infoMsg + menuMsg);
+        }
+
+    } catch (e) {
+        console.log("🥵 Menu erreur:", e);
+        repondre("🥵 Menu erreur: " + e);
     }
 
-    // Voice note
-    const voiceDir = __dirname + "/../voices/";
-    if (!fs.existsSync(voiceDir)) return;
-
-    const voices = fs.readdirSync(voiceDir).filter(f => f.endsWith(".mp3"));
-    if (voices.length === 0) return;
-
-    const voice = voiceDir + voices[Math.floor(Math.random() * voices.length)];
-    if (fs.existsSync(voice)) {
-      await zk.sendMessage(
-        dest,
-        {
-          audio: { url: voice },
-          mimetype: "audio/mpeg",
-          ptt: true,
-        },
-        { quoted: ms }
-      );
-    }
-  }
-);
+});
