@@ -10,12 +10,21 @@
 </p>
 
 ---
-## ✨ Get Session ID
+## ✨ Generate Your Session ID
 
-To use **UCEY XD**, you need a WhatsApp session.
+UCEY XD requires a WhatsApp session string to work. You can easily generate one using our secure online tool:
 
-👉 [Click here to generate yours](https://dark-pair-code.onrender.com/)
+<p align="center">
+  <a href="https://dark-pair-code.onrender.com/" target="_blank">
+    <img src="https://img.shields.io/badge/GENERATE%20SESSION-green?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Generate Session">
+  </a>
+</p>
 
+> **Note:** This session is used to authenticate your bot with WhatsApp. Keep it private and safe.
+
+---
+
+Need help? Contact the dev at [@ucey_tech](https://wa.me/+27619316979) or open an issue.
 
 ## 🚀 Deploy to Heroku
 
