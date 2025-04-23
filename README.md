@@ -15,7 +15,7 @@
 UCEY XD requires a WhatsApp session string to work. You can easily generate one using our secure online tool:
 
 <p align="center">
-  <a href="https://dark-pair-code.onrender.com/" target="_blank">
+  <a href="https://ucey tech.onrender.com/" target="_blank">
     <img src="https://img.shields.io/badge/GENERATE%20SESSION-green?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Generate Session">
   </a>
 </p>
