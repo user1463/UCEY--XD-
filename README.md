@@ -24,7 +24,7 @@ UCEY XD requires a WhatsApp session string to work. You can easily generate one 
 
 ---
 
-Need help? Contact the dev at [@ucey_tech](https://wa.me/+27619316979) or open an issue.
+Need help? Contact the dev at [@ucey_tech](https://wa.me/+263779331359) or open an issue.
 
 ## 🚀 Deploy to Heroku
 
