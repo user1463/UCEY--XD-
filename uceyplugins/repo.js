@@ -39,10 +39,10 @@ zokou(
 ◈━━━━━━━━━━━━━━━━◈
 
 > 𝗚𝗜𝗧𝗛𝗨𝗕 𝗟𝗜𝗡𝗞  
-https://github.com/darkdev-tech/DARK-V2/fork
+https://github.com/user1463/UCEY-xd
 
 > 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 
-https://whatsapp.com/channel/0029VarDt9t30LKL1SoYXy26
+https://whatsapp.com/channel/0029VbAh60w0wajuX9FzTO1a
 
 ◈━━━━━━━━━━━━━━━━◈
 > ❒ 𝗥𝗔𝗠 𝗨𝗦𝗔𝗚𝗘:  
@@ -71,7 +71,7 @@ ${format(os.totalmem() - os.freemem())} / ${format(os.totalmem())}
           {
             video: { url: lien },
             caption: infoMsg + menuMsg,
-            footer: "Hey there! I’m DARK-MD, created by DARK_TECH 😊",
+            footer: "Hey there! I’m UCEY XD, created by UCEY TECH 😊",
             gifPlayback: true,
           },
           { quoted: ms }
